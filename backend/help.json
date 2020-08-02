@@ -1,0 +1,121 @@
+{
+  "routes": {
+    "/users": {
+      "/login": {
+        "method": "post",
+        "requires auth": "false",
+        "request_format": {
+          "password": "string",
+          "email": "string"
+        },
+        "response": {
+          "status": 401,
+          "message": "success message",
+          "token": "jwt_auth_token"
+        }
+      },
+      "/signup": {
+        "method": "post",
+        "requires auth": "false",
+        "request_format": {
+          "password": "string",
+          "email": "string (must be unique)"
+        },
+        "response": {
+          "status": 200,
+          "message": "success message",
+          "token": "jwt_auth_token"
+        }
+      },
+      "/signout": {
+        "method": "delete",
+        "requires auth": "true",
+        "request_format": {
+          "password": "string (password of current logged user"
+        },
+        "response": {
+          "status": 200,
+          "message": "success message",
+          "token": "jwt_auth_token"
+        }
+      }
+    },
+    "/notes": {
+      "/": {
+        "method": "multiple methods supported",
+        "GET": {
+          "method": "get",
+          "requires auth": "true",
+          "response": {
+            "status": 200,
+            "nlen": "length of notes",
+            "notes": {
+              "_id": "string",
+              "title": "string",
+              "body": "string",
+              "color": "string"
+            }
+          }
+        },
+        "POST": {
+          "method": "post",
+          "requires auth": "true",
+          "request_format": {
+            "title": "string",
+            "body": "string",
+            "color": "string"
+          },
+          "response": {
+            "status": 201,
+            "message": "created note",
+            "note": { "type": "object", "val": "created note" }
+          }
+        }
+      },
+      "/noteId": {
+        "method": "multiple methods supported",
+        "GET": {
+          "method": "get",
+          "requires auth": "true",
+          "response": {
+            "status": 200,
+            "note": {
+              "_id": "string",
+              "title": "string",
+              "body": "string",
+              "color": "string"
+            }
+          }
+        },
+        "PATCH": {
+          "method": "patch",
+          "requires auth": "true",
+          "request_format": {
+            "title": "string (optional)",
+            "body": "string (optional)",
+            "color": "string (optional)"
+          },
+          "response": {
+            "status": 200,
+            "message": "updated",
+            "older": { "type": "object", "val": "older note" },
+            "ops": { "type": "object", "val": "updated values" }
+          }
+        },
+        "DELETE": {
+          "method": "delete",
+          "requires auth": "true",
+          "response": {
+            "status": 200,
+            "result": "results",
+            "message": "deleted"
+          }
+        }
+      },
+      "/api_help": {
+        "method": "get",
+        "response": "current JSON"
+      }
+    }
+  }
+}
