@@ -1,0 +1,5 @@
+{
+    "prettier.useTabs": true,
+    "files.autoSave": "onWindowChange",
+    "editor.formatOnSave": true
+}

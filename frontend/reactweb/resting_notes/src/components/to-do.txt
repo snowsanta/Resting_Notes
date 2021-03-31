@@ -1,0 +1,12 @@
+activate sidebar
+flush changes on modal close -> one function for icon and outside click
+connection to backend
+
+// more features
+dark mode switch in sidemenu
+login
+
+
+** modal minwidth
+**title styling
+** positioning of notes from under appbar
